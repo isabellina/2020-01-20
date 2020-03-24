@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.artsmia.model.Model;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -59,6 +61,7 @@ public class ArtsmiaController {
     void doCreaGrafo(ActionEvent event) {
     	txtResult.clear();
     	txtResult.appendText("Crea grafo");
+    	this.model.creaGrafo(boxRuolo.getValue());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -74,5 +77,8 @@ public class ArtsmiaController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	ObservableList<String> r = FXCollections.observableList(model.ruoli());
+    	boxRuolo.setItems(r);
+    	boxRuolo.setValue(r.get(0));
     }
 }
